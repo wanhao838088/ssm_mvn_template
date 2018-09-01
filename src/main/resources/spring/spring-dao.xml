@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 配置整合mybatis过程 -->
+	<!-- 1.配置数据库相关参数properties的属性：${url} -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- druid-->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${driverClass}"/>
+		<property name="url" value="${jdbcUrl}"></property>
+		<property name="username" value="${user}" />
+		<property name="password" value="${password}"/>
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${druid.initialSize}"/>
+		<property name="minIdle" value="${druid.minIdle}"/>
+		<property name="maxActive" value="${druid.maxActive}"/>
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${druid.maxWait}"/>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+
+		<property name="validationQuery" value="${druid.validationQuery}" />
+		<property name="testWhileIdle" value="${druid.testWhileIdle}" />
+		<property name="testOnBorrow" value="${druid.testOnBorrow}" />
+		<property name="testOnReturn" value="${druid.testOnReturn}" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小  如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。-->
+		<property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
+
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="${druid.filters}" />
+
+	</bean>
+
+	<!-- p6spy 监控配置 -->
+	<bean id="ds" class="com.p6spy.engine.spy.P6DataSource" >
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+
+
+	<!--&lt;!&ndash; 3.配置SqlSessionFactory对象 &ndash;&gt;-->
+	<!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+		<!--&lt;!&ndash; 注入数据库连接池 &ndash;&gt;-->
+		<!--<property name="dataSource" ref="dataSource" />-->
+		<!--&lt;!&ndash; 配置MyBaties全局配置文件:mybatis-config.xml &ndash;&gt;-->
+		<!--<property name="configLocation" value="classpath:mybatis-config.xml" />-->
+		<!--&lt;!&ndash; 扫描entity包 使用别名 &ndash;&gt;-->
+		<!--<property name="typeAliasesPackage" value="com.soecode.lyf.entity" />-->
+		<!--&lt;!&ndash; 扫描sql配置文件:mapper需要的xml文件 &ndash;&gt;-->
+		<!--<property name="mapperLocations" value="classpath:mapper/*.xml" />-->
+	<!--</bean>-->
+
+	<!--&lt;!&ndash; 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 &ndash;&gt;-->
+	<!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+		<!--&lt;!&ndash; 注入sqlSessionFactory &ndash;&gt;-->
+		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />-->
+		<!--&lt;!&ndash; 给出需要扫描Dao接口包 &ndash;&gt;-->
+		<!--<property name="basePackage" value="com.soecode.lyf.dao" />-->
+	<!--</bean>-->
+
+
+</beans>
