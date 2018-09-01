@@ -1,24 +1,18 @@
--- 创建图书表
-CREATE TABLE `book` (
-  `book_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '图书ID',
-  `name` varchar(100) NOT NULL COMMENT '图书名称',
-  `number` int(11) NOT NULL COMMENT '馆藏数量',
-  PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='图书表';
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`ssm_template` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
--- 初始化图书数据
-INSERT INTO `book` (`book_id`, `name`, `number`)
-VALUES
-	(1000, 'Java程序设计', 10),
-	(1001, '数据结构', 10),
-	(1002, '设计模式', 10),
-	(1003, '编译原理', 10);
+CREATE TABLE `ssm_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) DEFAULT NULL,
+  `mobile` char(11) DEFAULT NULL,
+  `password` varchar(30) DEFAULT NULL,
+  `login_token` varchar(40) DEFAULT NULL,
+  `head_img_url` mediumtext,
+  `register_time` datetime DEFAULT NULL,
+  `login_time` datetime DEFAULT NULL,
+  `is_delete` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- 创建预约图书表
-CREATE TABLE `appointment` (
-  `book_id` bigint(20) NOT NULL COMMENT '图书ID',
-  `student_id` bigint(20) NOT NULL COMMENT '学号',
-  `appoint_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '预约时间' ,
-  PRIMARY KEY (`book_id`, `student_id`),
-  INDEX `idx_appoint_time` (`appoint_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='预约图书表';
+/*Data for the table `ssm_user` */
+
+insert  into `ssm_user`(`id`,`username`,`mobile`,`password`,`login_token`,`head_img_url`,`register_time`,`login_time`,`is_delete`) values (1,'yihao','13566677788','1111','wwwww',NULL,NULL,NULL,0),(2,'erhao','13566677789','2222',NULL,NULL,NULL,NULL,0),(3,'sa','13566677788','33333',NULL,NULL,NULL,NULL,0);
