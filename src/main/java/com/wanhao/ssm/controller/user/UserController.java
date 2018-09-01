@@ -1,4 +1,4 @@
-package com.wanhao.ssm.controller;
+package com.wanhao.ssm.controller.user;
 
 import com.wanhao.ssm.entity.User;
 import com.wanhao.ssm.entity.util.JsonArrayResult;
@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by LiuLiHao on 2018/9/1 11:28.
- * 描述：
+ * 描述： 用户
  * 作者： LiuLiHao
  */
 @Controller
