@@ -108,6 +108,10 @@ $(function () {
        }
     })
 
+    //左侧菜单效果
+    // $('#content').bind("click",function(event){
+    //todo 在这里回调不到点击事件
+
 })
 var cateIds = [];
 function getCateId(cateId) {

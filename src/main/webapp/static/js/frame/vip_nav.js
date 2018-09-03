@@ -9,6 +9,29 @@ layui.define(['layer', 'element'], function (exports) {
         , element = layui.element
         , $ = layui.jquery;
 
+    //触发事件
+    var tab = {
+        tabAdd: function(title,url,id){
+            //新增一个Tab项
+            element.tabAdd('xbs_tab', {
+                title: title
+                ,content: '<iframe tab-id="'+id+'" frameborder="0" src="'+url+'" scrolling="yes" class="x-iframe"></iframe>'
+                ,id: id
+            })
+        }
+        ,tabDelete: function(othis){
+            //删除指定Tab项
+            element.tabDelete('xbs_tab', '44'); //删除：“商品管理”
+
+
+            othis.addClass('layui-btn-disabled');
+        }
+        ,tabChange: function(id){
+            //切换到指定Tab项
+            element.tabChange('xbs_tab', id); //切换到：用户管理
+        }
+    };
+
     // 封装方法
     var mod = {
         // 添加 HTMl
@@ -18,13 +41,14 @@ layui.define(['layer', 'element'], function (exports) {
                 var view = "";
                 if (res.data) {
                     $(res.data).each(function (k, v) {
+                        //解析菜单json数据 生成菜单
                         v.subset && treeStatus ? view += '<li>' : view += '<li>';
                         if (v.subset) {
                             //一级标题部分
                             view += '<a href="javascript:;"><i class="layui-icon">' + v.icon + '</i><cite>' + v.text +
                                 '</cite> <i class="iconfont nav_right">&#xe697;</i></a><ul class="sub-menu">';
 
-                            //二级标题部分 (就是一级菜单的展开)
+                            //二级菜单部分 (就是一级菜单的展开)
                             $(v.subset).each(function (ko, vo) {
                                 view += '<li>';
                                 if(vo.target){
@@ -32,9 +56,10 @@ layui.define(['layer', 'element'], function (exports) {
                                 }else{
                                     view += '<a href="javascript:;" _href="' + vo.href + '">';
                                 }
-                                view += '<i class="layui-icon">' + vo.icon + '</i>' + vo.text + '</a></li>';
+                                view += '<i class="iconfont">' + vo.icon + '</i><cite>' + vo.text + '<cite></a></li>';
                             });
-                            view += '<ul>';
+                            view += '</ul>';
+
                         } else {
                             if (v.target) {
                                 view += '<a href="' + v.href + '" target="_blank">';
@@ -43,6 +68,7 @@ layui.define(['layer', 'element'], function (exports) {
                             }
                             view += '<i class="layui-icon">' + v.icon + '</i>' + v.text + '</a>';
                         }
+
                         view += '</li>';
                     });
 
@@ -55,7 +81,7 @@ layui.define(['layer', 'element'], function (exports) {
                 // 更新渲染
                 element.init();
 
-
+                //菜单点击事件处理
                 $('.left-nav #nav li').click(function (event) {
                     if($(this).children('.sub-menu').length){
                         //隐藏和显示子菜单
