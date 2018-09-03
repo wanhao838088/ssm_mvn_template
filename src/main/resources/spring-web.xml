@@ -21,6 +21,7 @@
 	 	<property name="suffix" value=".jsp" />
 	 </bean>
 
+	<!--直接对应jspwenj-->
 	<mvc:view-controller path="/index" view-name="frame/index"></mvc:view-controller>
 
 	<!-- 4.扫描web相关的bean -->

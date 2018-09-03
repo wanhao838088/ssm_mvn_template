@@ -17,7 +17,7 @@
 <body class="loginBody">
 <form class="layui-form">
     <div class="login_face">
-        <img src="${ctx}/static/images/head.jpg" class="userAvatar">
+        <img src="${ctx}/static/images/face.jpg" class="userAvatar">
     </div>
     <div class="layui-form-item input-item">
         <label for="userName">用户名</label>

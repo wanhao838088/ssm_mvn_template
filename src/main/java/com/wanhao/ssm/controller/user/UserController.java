@@ -22,11 +22,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "index")
+    private static final String PREFIX = "user/";
+
+    @RequestMapping(value = "listData")
     @ResponseBody
     public JsonArrayResult<User> index(){
         List<User> users = userService.selectAll();
         return new JsonArrayResult<>(0,users);
+    }
+
+    /**
+     * 用户列表页面跳转
+     * @return
+     */
+    @RequestMapping(value = "listHtml")
+    public String listHtml(){
+        return PREFIX+"list";
     }
 
 }

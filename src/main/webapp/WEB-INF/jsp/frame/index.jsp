@@ -10,276 +10,150 @@
 <head>
     <title>主页面</title>
     <%@ include file="../common/head.jsp" %>
-
-    <link rel="stylesheet" href="${ctx}/static/css/index.css">
+    <%--<link rel="stylesheet" href="${ctx}/static/css/index.css">--%>
+    <link rel="stylesheet" href="${ctx}/static/css/font.css">
+    <link rel="stylesheet" href="${ctx}/static/css/xadmin.css">
 
 </head>
-<body class="main_body">
-<div class="layui-layout layui-layout-admin">
-    <!-- 顶部 -->
-    <div class="layui-header header">
-        <div class="layui-main mag0">
-            <a href="#" class="logo">layuiCMS 2.0</a>
-            <!-- 显示/隐藏菜单 -->
-            <a href="javascript:;" class="seraph hideMenu icon-caidan"></a>
-            <!-- 顶级菜单 -->
-            <ul class="layui-nav mobileTopLevelMenus" mobile>
-                <li class="layui-nav-item" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
-                        <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a></dd>
-                        <dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a></dd>
-                        <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <ul class="layui-nav topLevelMenus" pc>
-                <li class="layui-nav-item layui-this" data-menu="contentManagement">
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a>
-                </li>
-                <li class="layui-nav-item" data-menu="memberCenter" pc>
-                    <a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a>
-                </li>
-                <li class="layui-nav-item" data-menu="systemeSttings" pc>
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
-                </li>
-                <li class="layui-nav-item" data-menu="seraphApi" pc>
-                    <a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
-                </li>
-            </ul>
-            <!-- 顶部右侧菜单 -->
-            <ul class="layui-nav top_menu">
-                <li class="layui-nav-item" pc>
-                    <a href="javascript:;" class="clearCache"><i class="layui-icon" data-icon="&#xe640;">&#xe640;</i><cite>清除缓存</cite><span class="layui-badge-dot"></span></a>
-                </li>
-                <li class="layui-nav-item lockcms" pc>
-                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
-                </li>
-                <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img src="images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">驊驊龔頾</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite><span class="layui-badge-dot"></span></a></dd>
-                        <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span class="layui-badge-dot"></span></a></dd>
-                        <dd pc><a href="javascript:;" class="changeSkin"><i class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>
-                        <dd><a href="page/login/login.html" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
+<body>
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo"><a href="./index.html">X-admin v2.0</a></div>
+    <div class="left_open">
+        <i title="展开左侧栏" class="iconfont">&#xe699;</i>
     </div>
-    <!-- 左侧导航 -->
-    <div class="layui-side layui-bg-black">
-        <div class="user-photo">
-            <a class="img" title="我的头像" ><img src="images/face.jpg" class="userAvatar"></a>
-            <p>你好！<span class="userName">驊驊龔頾</span>, 欢迎登录</p>
-        </div>
-        <!-- 搜索 -->
-        <div class="layui-form component">
-            <select name="search" id="search" lay-search lay-filter="searchPage">
-                <option value="">搜索页面或功能</option>
-                <option value="1">layer</option>
-                <option value="2">form</option>
-            </select>
-            <i class="layui-icon">&#xe615;</i>
-        </div>
-        <div class="navBar layui-side-scroll" id="navBar">
-            <ul class="layui-nav layui-nav-tree">
-                <li class="layui-nav-item layui-this">
-                    <a href="javascript:;" data-url="page/main.html"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a>
-                </li>
-            </ul>
-        </div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="javascript:;">admin</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+                <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+                <dd><a href="./login.html">退出</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+    </ul>
+
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav" lay-filter="side-main">
+            <%--<li>--%>
+                <%--<a href="javascript:;">--%>
+                    <%--<i class="iconfont">&#xe6b8;</i>--%>
+                    <%--<cite>会员管理</cite>--%>
+                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+                <%--</a>--%>
+                <%--<ul class="sub-menu">--%>
+                    <%--<li>--%>
+                        <%--<a _href="member-list.html">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>会员列表</cite>--%>
+
+                        <%--</a>--%>
+                    <%--</li >--%>
+                    <%--<li>--%>
+                        <%--<a _href="member-del.html">--%>
+                            <%--<i class="iconfont">&#xe6a7;</i>--%>
+                            <%--<cite>会员删除</cite>--%>
+
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="javascript:;">--%>
+                            <%--<i class="iconfont">&#xe70b;</i>--%>
+                            <%--<cite>会员管理</cite>--%>
+                            <%--<i class="iconfont nav_right">&#xe697;</i>--%>
+                        <%--</a>--%>
+                        <%--<ul class="sub-menu">--%>
+                            <%--<li>--%>
+                                <%--<a _href="xxx.html">--%>
+                                    <%--<i class="iconfont">&#xe6a7;</i>--%>
+                                    <%--<cite>会员列表</cite>--%>
+
+                                <%--</a>--%>
+                            <%--</li >--%>
+                            <%--<li>--%>
+                                <%--<a _href="xx.html">--%>
+                                    <%--<i class="iconfont">&#xe6a7;</i>--%>
+                                    <%--<cite>会员删除</cite>--%>
+
+                                <%--</a>--%>
+                            <%--</li>--%>
+                            <%--<li>--%>
+                                <%--<a _href="xx.html">--%>
+                                    <%--<i class="iconfont">&#xe6a7;</i>--%>
+                                    <%--<cite>等级管理</cite>--%>
+
+                                <%--</a>--%>
+                            <%--</li>--%>
+
+                        <%--</ul>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+        </ul>
     </div>
-    <!-- 右侧内容 -->
-    <div class="layui-body layui-form">
-        <div class="layui-tab mag0" lay-filter="bodyTab" id="top_tabs_box">
-            <ul class="layui-tab-title top_tab" id="top_tabs">
-                <li class="layui-this" lay-id=""><i class="layui-icon">&#xe68e;</i> <cite>后台首页</cite></li>
-            </ul>
-            <ul class="layui-nav closeBox">
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="layui-icon caozuo">&#xe643;</i> 页面操作</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> 刷新当前</a></dd>
-                        <dd><a href="javascript:;" class="closePageOther"><i class="seraph icon-prohibit"></i> 关闭其他</a></dd>
-                        <dd><a href="javascript:;" class="closePageAll"><i class="seraph icon-guanbi"></i> 关闭全部</a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <div class="layui-tab-content clildFrame">
-                <div class="layui-tab-item layui-show">
-                    <iframe src="page/main.html"></iframe>
-                </div>
+</div>
+
+<%--<div class="navBar layui-side-scroll" id="navBar">--%>
+    <%--<ul class="layui-nav layui-nav-tree" lay-filter="side-main">--%>
+        <%--<li class="layui-nav-item  layui-nav-itemed">--%>
+            <%--<a href="javascript:;">--%>
+                <%--<i class="layui-icon">&#xe620;</i>基础运营</a>--%>
+            <%--<dl class="layui-nav-child">--%>
+            <%--</dl>--%>
+        <%--</li>--%>
+        <%--<li class="layui-nav-item">--%>
+            <%--<a href="javascript:;"><i class="layui-icon">&#xe628;</i>网站建设</a>--%>
+            <%--<dl class="layui-nav-child">--%>
+                <%--<dd>--%>
+                    <%--<!--<a href="javascript:;" href-url="#"><i class="layui-icon">&#xe621;</i>配置</a>-->--%>
+                <%--</dd>--%>
+            <%--</dl>--%>
+        <%--</li>--%>
+    <%--</ul>--%>
+<%--</div>--%>
+
+
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+        <ul class="layui-tab-title">
+            <li class="home"><i class="layui-icon">&#xe68e;</i>我的桌面</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
         </div>
     </div>
 </div>
-
-<!-- 移动导航 -->
-<div class="site-tree-mobile"><i class="layui-icon">&#xe602;</i></div>
-<div class="site-mobile-shade"></div>
+<div class="page-content-bg"></div>
+<!-- 右侧主体结束 -->
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+<div class="footer">
+    <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>
+</div>
 
 </body>
 </html>
+<script src="${ctx}/static/js/frame/vip_comm.js"></script>
+
 <script>
-    var $,tab,dataStr,layer;
-    layui.config({
-        base : "js/"
-    }).extend({
-        "bodyTab" : "bodyTab"
-    })
-    layui.use(['bodyTab','form','element','layer','jquery'],function(){
-        var form = layui.form,
-            element = layui.element;
-        $ = layui.$;
-        layer = parent.layer === undefined ? layui.layer : top.layer;
-        tab = layui.bodyTab({
-            openTabNum : "50",  //最大可打开窗口数量
-            url : "json/navs.json" //获取菜单json地址
-        });
+    layui.use(['layer', 'vip_nav'], function () {
+        // 操作对象
+        var layer = layui.layer
+            , vipNav = layui.vip_nav
+            , $ = layui.jquery;
 
-        //通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
-        function getData(json){
-            $.getJSON(tab.tabConfig.url,function(data){
-                if(json == "contentManagement"){
-                    dataStr = data.contentManagement;
-                    //重新渲染左侧菜单
-                    tab.render();
-                }else if(json == "memberCenter"){
-                    dataStr = data.memberCenter;
-                    //重新渲染左侧菜单
-                    tab.render();
-                }else if(json == "systemeSttings"){
-                    dataStr = data.systemeSttings;
-                    //重新渲染左侧菜单
-                    tab.render();
-                }else if(json == "seraphApi"){
-                    dataStr = data.seraphApi;
-                    //重新渲染左侧菜单
-                    tab.render();
-                }
-            })
-        }
-        //页面加载时判断左侧菜单是否显示
-        //通过顶部菜单获取左侧菜单
-        $(".topLevelMenus li,.mobileTopLevelMenus dd").click(function(){
-            if($(this).parents(".mobileTopLevelMenus").length != "0"){
-                $(".topLevelMenus li").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-            }else{
-                $(".mobileTopLevelMenus dd").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-            }
-            $(".layui-layout-admin").removeClass("showMenu");
-            $("body").addClass("site-mobile");
-            getData($(this).data("menu"));
-            //渲染顶部窗口
-            tab.tabMove();
-        })
+        // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
+       vipNav.main('/static/js/frame/nav_main.json', 'side-main', true);
 
-        //隐藏左侧导航
-        $(".hideMenu").click(function(){
-            if($(".topLevelMenus li.layui-this a").data("url")){
-                layer.msg("此栏目状态下左侧菜单不可展开");  //主要为了避免左侧显示的内容与顶部菜单不匹配
-                return false;
-            }
-            $(".layui-layout-admin").toggleClass("showMenu");
-            //渲染顶部窗口
-            tab.tabMove();
-        })
-
-        //通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
-        getData("contentManagement");
-
-        //手机设备的简单适配
-        $('.site-tree-mobile').on('click', function(){
-            $('body').addClass('site-mobile');
-        });
-        $('.site-mobile-shade').on('click', function(){
-            $('body').removeClass('site-mobile');
-        });
-
-        // 添加新窗口
-        $("body").on("click",".layui-nav .layui-nav-item a:not('.mobileTopLevelMenus .layui-nav-item a')",function(){
-            //如果不存在子级
-            if($(this).siblings().length == 0){
-                addTab($(this));
-                $('body').removeClass('site-mobile');  //移动端点击菜单关闭菜单层
-            }
-            $(this).parent("li").siblings().removeClass("layui-nav-itemed");
-        })
-
-
-        //刷新后还原打开的窗口
-        if(cacheStr == "true") {
-            if (window.sessionStorage.getItem("menu") != null) {
-                menu = JSON.parse(window.sessionStorage.getItem("menu"));
-                curmenu = window.sessionStorage.getItem("curmenu");
-                var openTitle = '';
-                for (var i = 0; i < menu.length; i++) {
-                    openTitle = '';
-                    if (menu[i].icon) {
-                        if (menu[i].icon.split("-")[0] == 'icon') {
-                            openTitle += '<i class="seraph ' + menu[i].icon + '"></i>';
-                        } else {
-                            openTitle += '<i class="layui-icon">' + menu[i].icon + '</i>';
-                        }
-                    }
-                    openTitle += '<cite>' + menu[i].title + '</cite>';
-                    openTitle += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' + menu[i].layId + '">&#x1006;</i>';
-                    element.tabAdd("bodyTab", {
-                        title: openTitle,
-                        content: "<iframe src='" + menu[i].href + "' data-id='" + menu[i].layId + "'></frame>",
-                        id: menu[i].layId
-                    })
-                    //定位到刷新前的窗口
-                    if (curmenu != "undefined") {
-                        if (curmenu == '' || curmenu == "null") {  //定位到后台首页
-                            element.tabChange("bodyTab", '');
-                        } else if (JSON.parse(curmenu).title == menu[i].title) {  //定位到刷新前的页面
-                            element.tabChange("bodyTab", menu[i].layId);
-                        }
-                    } else {
-                        element.tabChange("bodyTab", menu[menu.length - 1].layId);
-                    }
-                }
-                //渲染顶部窗口
-                tab.tabMove();
-            }
-        }else{
-            window.sessionStorage.removeItem("menu");
-            window.sessionStorage.removeItem("curmenu");
-        }
-    })
-
-    //打开新窗口
-    function addTab(_this){
-        tab.tabAdd(_this);
-    }
-
-    //捐赠弹窗
-    function donation(){
-        layer.tab({
-            area : ['260px', '367px'],
-            tab : [{
-                title : "微信",
-                content : "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/wechat.jpg'></div>"
-            },{
-                title : "支付宝",
-                content : "<div style='padding:30px;overflow:hidden;background:#d2d0d0;'><img src='images/alipay.jpg'></div>"
-            }]
-        })
-    }
-
-    //图片管理弹窗
-    function showImg(){
-        $.getJSON('json/images.json', function(json){
-            var res = json;
-            layer.photos({
-                photos: res,
-                anim: 5
-            });
-        });
-    }
+    });
 </script>
+<script type="text/javascript" src="${ctx}/static/js/frame/xadmin.js"></script>
