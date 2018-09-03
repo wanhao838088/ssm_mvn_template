@@ -20,6 +20,13 @@ public class JsonArrayResult<T> extends JsonResult{
         this.data = data;
     }
 
+    public JsonArrayResult(Integer code, List<T> data,Integer count) {
+        super(code);
+        this.data = data;
+        this.count = count;
+    }
+
+
     private Integer count;
 
     public Integer getCount() {
@@ -40,4 +47,5 @@ public class JsonArrayResult<T> extends JsonResult{
     public void setData(List<T> data) {
         this.data = data;
     }
+
 }

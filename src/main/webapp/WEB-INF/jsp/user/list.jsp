@@ -10,47 +10,64 @@
 <head>
     <title>用户列表</title>
     <%@ include file="/WEB-INF/jsp/common/head.jsp" %>
-
-    <link rel="stylesheet" href="${ctx}/static/css/public.css">
+    <link rel="stylesheet" href="${ctx}/static/css/font.css">
+    <link rel="stylesheet" href="${ctx}/static/css/xadmin.css">
 
 </head>
-<body class="childrenBody">
-<form class="layui-form">
-    <blockquote class="layui-elem-quote quoteBox">
-        <form class="layui-form">
-            <div class="layui-inline">
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input searchVal" placeholder="请输入搜索的内容" />
-                </div>
-                <a class="layui-btn search_btn" data-type="reload">搜索</a>
-            </div>
-            <div class="layui-inline">
-                <a class="layui-btn layui-btn-normal addNews_btn">添加文章</a>
-            </div>
-            <div class="layui-inline">
-                <a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
-            </div>
-        </form>
-    </blockquote>
-    <table id="newsList" lay-filter="newsList"></table>
-    <!--审核状态-->
-    <script type="text/html" id="newsStatus">
-        {{#  if(d.newsStatus == "1"){ }}
-        <span class="layui-red">等待审核</span>
-        {{#  } else if(d.newsStatus == "0"){ }}
-        <span class="layui-blue">已存草稿</span>
-        {{#  } else { }}
-        审核通过
-        {{#  }}}
-    </script>
+<body class="layui-anim layui-anim-up">
 
-    <!--操作-->
-    <script type="text/html" id="newsListBar">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
-        <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="look">预览</a>
-    </script>
-</form>
+<div class="x-nav" style="">
+
+    <div class="my-breadcrumb" style="float: left">
+            <span class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
+              <a href="javascript:;">会员管理</a><span lay-separator="">/</span>
+                <a>
+                    <cite>会员列表</cite>
+                </a>
+             </span>
+    </div>
+
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">
+            &#xe669;
+        </i>
+    </a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form id="form" class="layui-form layui-col-md12 x-so">
+            <%--分页使用--%>
+            <input type="hidden" id="pageVal" name="pageVal" value="">
+            <input class="layui-input" placeholder="注册开始时间" name="start" id="start">
+            <input class="layui-input" placeholder="注册截止时间" name="end" id="end">
+            <input type="text" id="username" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            <button id="my-data-table-query" class="layui-btn"
+                    lay-filter="sreach"><i class="layui-icon">&#xe615;</i>
+            </button>
+        </form>
+    </div>
+
+    <table class="layui-hide" id="my-data-table" lay-filter="my-data-table"></table>
+    <div style="display: flex;justify-content: center;">
+        <div id="page"></div>
+    </div>
+
+</div>
+
+<script type="text/html" id="barOption">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script src="${ctx}/static/js/frame/vip_comm.js"></script>
+<script src="${ctx}/static/js/user/list.js"></script>
+
 </body>
 
 </html>
+
+<script>
+
+</script>

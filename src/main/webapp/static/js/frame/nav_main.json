@@ -6,11 +6,11 @@
         {
           "text": "会员列表",
           "icon": "&#xe70b;",
-          "href": "/member/list"
+          "href": "/user/listHtml"
         },{
           "text": "会员实名认证",
           "icon": "&#xe70b;",
-          "href": "/member/toMemberRealNameAuth"
+          "href": "/user/listHtml"
         }
 
       ]

@@ -1,5 +1,6 @@
 package com.wanhao.ssm.controller.user;
 
+import com.github.pagehelper.PageInfo;
 import com.wanhao.ssm.entity.User;
 import com.wanhao.ssm.entity.util.JsonArrayResult;
 import com.wanhao.ssm.service.UserService;
@@ -26,9 +27,17 @@ public class UserController {
 
     @RequestMapping(value = "listData")
     @ResponseBody
-    public JsonArrayResult<User> index(){
-        List<User> users = userService.selectAll();
-        return new JsonArrayResult<>(0,users);
+    public JsonArrayResult<User> index(String start,String end,
+                                       String username,Integer page){
+        User user = new User();
+        user.setUsername(username);
+        user.setPage(page);
+
+        List<User> users = userService.findUser(user);
+        //创建分页对象 用来获取总记录数
+        PageInfo<User> info = new PageInfo<>(users);
+
+        return new JsonArrayResult<>(0,users,(int)info.getTotal());
     }
 
     /**

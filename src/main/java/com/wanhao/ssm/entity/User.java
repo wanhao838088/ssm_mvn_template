@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,11 +16,8 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-public class User implements Serializable {
-    @Id
-    @Column(name = "id")
-    //@GeneratedValue(generator ="IDENTITY")
-    private Integer id;
+public class User extends BaseBean implements Serializable {
+
     private String username;
     private String mobile;
     private String password;
