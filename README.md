@@ -16,3 +16,10 @@ http://localhost:你的端口号/kaptcha/captcha-image
 jmimemagic 检测上传文件的文件类型,防止非法上传脚本
 
 前台部分暂使用LayUI,登录不做实现,可以根据自己需求添加权限框架.
+
+## 运行效果
+![截图1](https://github.com/wanhao838088/JavaWebPageTion/blob/master/screenshot/screen_1.png)  
+
+![截图2](https://github.com/wanhao838088/JavaWebPageTion/blob/master/screenshot/screen_1.png)  
+
+![截图3](https://github.com/wanhao838088/JavaWebPageTion/blob/master/screenshot/screen_1.png)  

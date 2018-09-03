@@ -2,7 +2,7 @@ var route = "/user";
 var service;
 var tableIndex;
 //是否是表单搜索
-var search = false;
+var search = true;
 
 (function () {
     service = initService(route);
@@ -272,8 +272,9 @@ function initDataTable(url, callback, loadDone) {
                         $("#pageVal").val(obj.curr);
 
                         if (!first) {
-                            var param = $("#form").serialize();
                             $("#my-data-table-query").trigger('click');
+                            //分页查询 不是表单查询
+                            search = false;
                         }
                     }
                 });
