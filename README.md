@@ -9,7 +9,7 @@ pagehelper 简化mybatis数据库操作,便于分页等
 
 lombok(idea玩家请先安装Lombok插件,否则会代码报错) 节省javabean的set get toString 等方法
 
-kaptcha 验证码生成 请求地址
+kaptcha(已配置好验证码) 验证码生成 请求地址
 
 http://localhost:你的端口号/kaptcha/captcha-image
 

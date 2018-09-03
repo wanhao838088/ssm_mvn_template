@@ -2,7 +2,9 @@ var route = "/user";
 var service;
 var tableIndex;
 //是否是表单搜索
-var search = true;
+var search = false;
+
+var searchForm = true;
 
 (function () {
     service = initService(route);
@@ -214,32 +216,35 @@ function initDataTable(url, callback, loadDone) {
 
             loadTable(tableIndex, "my-data-table", "#my-data-table",
                 cols, url + "?start=" + $start.val() + "&end=" + $end.val()
-                + "&username=" + $username.val()+"&page="+$pageVal.val()
-
+                + "&username=" + $username.val() + "&page=" + $pageVal.val()
                 , function (res, curr, count) {
+
                     $queryButton.removeAttr("disabled");
 
-                    // layui.use(['laypage', 'layer'], function () {
-                    //     var laypage = layui.laypage
-                    //         , layer = layui.layer;
-                    //
-                    //     laypage.render({
-                    //         elem: 'page'
-                    //         , count: count //数据总数，从服务端得到
-                    //         , jump: function (obj, first) {
-                    //             //请求分页的url
-                    //             var reLoadUrl = url + '?page=' + obj.curr;
-                    //
-                    //             if (!first) {
-                    //                 table.reload('my-data-table', {
-                    //                     url: reLoadUrl
-                    //                 });
-                    //             }
-                    //         }
-                    //     });
-                    // });
+                    //是提交的条件查询 需要刷新分页信息
+                    layui.use(['laypage', 'layer'], function () {
+                        var laypage = layui.laypage
+                            , layer = layui.layer;
+
+                        laypage.render({
+                            elem: 'page'
+                            , count: count //数据总数，从服务端得到
+                            , jump: function (obj, first) {
+                                //请求分页的url
+                                $("#pageVal").val(obj.curr);
+
+                                if (!first) {
+                                    $("#my-data-table-query").trigger('click');
+
+
+                                }
+                            }
+                        });
+                    });
+
 
                 });
+
         })
 
         //时间
@@ -263,7 +268,7 @@ function initDataTable(url, callback, loadDone) {
             , done: function (res, curr, count) {
                 loadDone(table, res, curr, count);
 
-                // //显示分页信息
+                //显示分页信息
                 laypage.render({
                     elem: 'page'
                     , count: count //数据总数，从服务端得到
@@ -272,9 +277,19 @@ function initDataTable(url, callback, loadDone) {
                         $("#pageVal").val(obj.curr);
 
                         if (!first) {
-                            $("#my-data-table-query").trigger('click');
-                            //分页查询 不是表单查询
-                            search = false;
+
+                            var $queryButton = $("#my-data-table-query"),
+                                $start = $("#start"),
+                                $end = $("#end"),
+                                $username = $("#username");
+
+                            loadTable(tableIndex, "my-data-table", "#my-data-table",
+                                cols, url + "?start=" + $start.val() + "&end=" + $end.val()
+                                + "&username=" + $username.val() + "&page=" + $("#pageVal").val()
+                                , function (res, curr, count) {
+                                    $queryButton.removeAttr("disabled");
+
+                                });
                         }
                     }
                 });
@@ -302,12 +317,12 @@ function getTableColumns() {
         , {field: 'mobile', title: '手机号', minWidth: 150}
         , {
             field: 'register_time', title: '注册时间', minWidth: 110, templet: function (d) {
-                return objIsNull(d.register_time)?'没有': timestampToTime(d.register_time);
+                return objIsNull(d.register_time) ? '没有' : timestampToTime(d.register_time);
             }
         }
         , {
             field: 'login_time', title: '登录时间', minWidth: 110, templet: function (d) {
-                return objIsNull(d.login_time)?'没有':timestampToTime(d.login_time);
+                return objIsNull(d.login_time) ? '没有' : timestampToTime(d.login_time);
             }
         }
         , {fixed: 'right', width: 150, align: 'center', toolbar: '#barOption'}
