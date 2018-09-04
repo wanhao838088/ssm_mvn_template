@@ -43,15 +43,12 @@
             <input class="layui-input" placeholder="注册截止时间" name="end" id="end">
             <input type="text" id="username" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
             <button id="my-data-table-query" class="layui-btn"
-                    lay-filter="sreach"><i class="layui-icon">&#xe615;</i>
+                    lay-filter="sreach" data-type="reload"><i class="layui-icon">&#xe615;</i>
             </button>
         </form>
     </div>
 
     <table class="layui-hide" id="my-data-table" lay-filter="my-data-table"></table>
-    <div style="display: flex;justify-content: center;">
-        <div id="page"></div>
-    </div>
 
 </div>
 

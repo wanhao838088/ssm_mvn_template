@@ -210,42 +210,6 @@ function initDataTable(url, callback, loadDone) {
             , element = layui.element;
         var laydate = layui.laydate;
 
-        // 注册查询事件
-        $queryButton.click(function () {
-            $queryButton.attr("disabled", true);
-
-            loadTable(tableIndex, "my-data-table", "#my-data-table",
-                cols, url + "?start=" + $start.val() + "&end=" + $end.val()
-                + "&username=" + $username.val() + "&page=" + $pageVal.val()
-                , function (res, curr, count) {
-
-                    $queryButton.removeAttr("disabled");
-
-                    //是提交的条件查询 需要刷新分页信息
-                    layui.use(['laypage', 'layer'], function () {
-                        var laypage = layui.laypage
-                            , layer = layui.layer;
-
-                        laypage.render({
-                            elem: 'page'
-                            , count: count //数据总数，从服务端得到
-                            , jump: function (obj, first) {
-                                //请求分页的url
-                                $("#pageVal").val(obj.curr);
-
-                                if (!first) {
-                                    $("#my-data-table-query").trigger('click');
-
-
-                                }
-                            }
-                        });
-                    });
-
-
-                });
-
-        })
 
         //时间
         laydate.render({
@@ -262,39 +226,38 @@ function initDataTable(url, callback, loadDone) {
             , id: 'my-data-table'
             , url: url
             //, method: 'get'
-            , page: false
+            , page: true
+            , limits: [10, 20, 30, 40, 50]
+            , limit: 10 //默认采用30
             , loading: true
             , even: true
             , done: function (res, curr, count) {
                 loadDone(table, res, curr, count);
+            }
+        });
 
-                //显示分页信息
-                laypage.render({
-                    elem: 'page'
-                    , count: count //数据总数，从服务端得到
-                    , jump: function (obj, first) {
-                        //请求分页的url
-                        $("#pageVal").val(obj.curr);
-
-                        if (!first) {
-
-                            var $queryButton = $("#my-data-table-query"),
-                                $start = $("#start"),
-                                $end = $("#end"),
-                                $username = $("#username");
-
-                            loadTable(tableIndex, "my-data-table", "#my-data-table",
-                                cols, url + "?start=" + $start.val() + "&end=" + $end.val()
-                                + "&username=" + $username.val() + "&page=" + $("#pageVal").val()
-                                , function (res, curr, count) {
-                                    $queryButton.removeAttr("disabled");
-
-                                });
-                        }
+        var $ = layui.$, active = {
+            reload: function () {
+                //var demoReload = $('#demoReload');
+                //执行重载
+                table.reload('my-data-table', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        username: 's'
                     }
                 });
             }
-        });
+        };
+
+        // 注册查询事件
+        $queryButton.click(function () {
+            $queryButton.attr("disabled", true);
+
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        })
 
         // 刷新
         $('#btn-refresh-my-data-table').on('click', function () {
@@ -346,8 +309,10 @@ function loadTable(index, id, elem, cols, url, loadDone) {
         , id: id
         , url: url
         , method: 'get'
-        , page: false
         , loading: true
+        , page: true
+        , limits: [10, 20, 30, 40, 50]
+        , limit: 10 //默认采用30
         , even: true
         , done: function (res, curr, count) {
             //resetPager();
