@@ -18,7 +18,7 @@ function objIsNull(param) {
 /**
  * get请求
  */
-function getRequest() {
+function getRequest(url,callback) {
     $.ajax({
         type: 'get',
         url: url,
