@@ -8,12 +8,10 @@ import net.sf.jmimemagic.*;
  * 作者： LiuLiHao
  */
 public class FileCheckUtil {
-    private static Magic parser = new Magic() ;
-
     public static String getFileMimeType(byte[] bytes){
         MagicMatch match = null;
         try {
-            match = parser.getMagicMatch(bytes);
+            match = Magic.getMagicMatch(bytes);
         } catch (MagicParseException e) {
             e.printStackTrace();
         } catch (MagicMatchNotFoundException e) {
